@@ -38,22 +38,17 @@ func main() {
 // postAlbums add a new album sent in the POST request payload
 func postAlbums(c *gin.Context) {
 	var newAlbum album
-
 	if err := c.BindJSON(&newAlbum); err != nil {
 		return
 	}
-
 	albums = append(albums, newAlbum)
-
 	c.IndentedJSON(http.StatusCreated, newAlbum)
 }
 
 // getAlbumbyID locates the album using it's ID and sends it back as the respone
 
 func getAlbumbyID(c *gin.Context) {
-
 	id := c.Param("id")
-
 	for _, a := range albums {
 		if a.ID == id {
 			c.IndentedJSON(http.StatusOK, a)
